@@ -8,6 +8,7 @@
 return [
     'Laminas\Router',
     'Laminas\Validator',
+    'Laminas\Db',
     'Application',
     'Pessoa',
 ];

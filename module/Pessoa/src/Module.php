@@ -5,6 +5,7 @@ use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\TableGateway\TableGateway;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Pessoa\Controller\PessoaController;
 use Pessoa\Model\Pessoa;
 use Pessoa\Model\PessoaTable;
 
@@ -28,6 +29,17 @@ class Module implements ConfigProviderInterface
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Pessoa());
                     return new TableGateway('pessoa', $dbAdapter, null, $resultSetPrototype);
+                },
+            ]
+        ];
+    }
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                PessoaController::class => function($container) {
+                    $tableGateway = $container->get(Model\PessoaTable::class);
+                    return new PessoaController($tableGateway);
                 },
             ]
         ];

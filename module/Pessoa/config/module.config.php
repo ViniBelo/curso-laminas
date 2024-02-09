@@ -24,12 +24,21 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\PessoaController::class => InvokableFactory::class,
+            // Controller\PessoaController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
         'template_path_stack' => [
             'pessoa' => __DIR__ . '/../view',
         ],
+    ],
+    'db' => [
+        'driver' => 'pdo_mysql',
+        'database' => 'curso_zend',
+        'username' => 'curso-zend',
+        'password' => '123',
+        'hostname' => 'localhost',
+        'port' => '3306',
+        'charset' => 'utf8'
     ],
 ];

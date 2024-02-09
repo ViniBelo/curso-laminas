@@ -3,12 +3,21 @@
 namespace Pessoa\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Pessoa\Model\PessoaTable;
 
 class PessoaController extends AbstractActionController 
 {
+
+    private $table;
+
+    public function __construct($table)
+    {
+        $this->table = $table;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        return new ViewModel(['pessoas' => $this->table->getAll()]);
     }
 
     public function adicionarAction()
@@ -33,6 +42,6 @@ class PessoaController extends AbstractActionController
 
     public function confirmacaoAction()
     {
-        
+
     }
 }
