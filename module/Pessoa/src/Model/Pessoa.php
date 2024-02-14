@@ -1,8 +1,9 @@
 <?php
 
 namespace Pessoa\Model;
+use Laminas\Stdlib\ArraySerializableInterface;
 
-class Pessoa
+class Pessoa implements ArraySerializableInterface
 {
     private $id;
     private $nome;
@@ -67,5 +68,16 @@ class Pessoa
     public function setSituacao($situacao)
     {
         $this->situacao = $situacao;
+    }
+
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'sobrenome' => $this->sobrenome,
+            'email' => $this->email,
+            'situacao' => $this->situacao,
+        ];
     }
 }

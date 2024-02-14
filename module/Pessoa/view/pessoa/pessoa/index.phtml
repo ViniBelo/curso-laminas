@@ -3,6 +3,7 @@
 ?>
 
 <H1>Lista de pessoas</H1>
+<a href="<?=$this->url('pessoa', ['action'=>'adicionar'])?>" class="btn btn-success">Adicionar</a>
 <table class="table table-stripped">
     <tr>
         <th>Código</th>
@@ -14,6 +15,10 @@
         <tr>
             <td><?= $pessoa->getId() ?></td>
             <td><?= $pessoa->getNome() ?></td>
+            <td>
+                <a href="<?=$this->url('pessoa',['action'=>'editar','id'=>$pessoa->getId()])?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="<?=$this->url('pessoa',['action'=>'remover','id'=>$pessoa->getId()])?>" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+            </td>
         </tr>
         <?php
     endforeach;

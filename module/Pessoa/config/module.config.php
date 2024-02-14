@@ -37,7 +37,7 @@ return [
         'database' => 'curso_zend',
         'username' => 'curso-zend',
         'password' => '123',
-        'hostname' => 'localhost',
+        'hostname' => '127.0.0.1',
         'port' => '3306',
         'charset' => 'utf8'
     ],

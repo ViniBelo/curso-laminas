@@ -8,6 +8,7 @@ use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Pessoa\Controller\PessoaController;
 use Pessoa\Model\Pessoa;
 use Pessoa\Model\PessoaTable;
+use Pessoa\Model\PessoaTableGateway;
 
 class Module implements ConfigProviderInterface
 {
@@ -20,11 +21,11 @@ class Module implements ConfigProviderInterface
     {
         return [
             'factories' => [
-                Model\PessoaTable::class => function($container) {
-                    $tableGateway = $container->get(Model\PessoaTableGateway::class);
+                PessoaTable::class => function($container) {
+                    $tableGateway = $container->get(PessoaTableGateway::class);
                     return new PessoaTable($tableGateway);
                 },
-                Model\PessoaTableGateway::class => function($container) {
+                PessoaTableGateway::class => function($container) {
                     $dbAdapter = $container->get(AdapterInterface::class);
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Pessoa());
@@ -38,7 +39,7 @@ class Module implements ConfigProviderInterface
         return [
             'factories' => [
                 PessoaController::class => function($container) {
-                    $tableGateway = $container->get(Model\PessoaTable::class);
+                    $tableGateway = $container->get(PessoaTable::class);
                     return new PessoaController($tableGateway);
                 },
             ]
